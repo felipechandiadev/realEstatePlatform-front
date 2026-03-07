@@ -23,6 +23,9 @@ type BackendAuthResponse = {
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV !== 'production',
+  pages: {
+    signIn: '/portal',
+  },
   providers: [
     CredentialsProvider({
       id: 'credentials',

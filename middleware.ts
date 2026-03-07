@@ -14,6 +14,14 @@ export default withAuth(
     });
 
     // ============================================
+    // RÈGLE 0: Redirigir raíz (/) a /portal/
+    // ============================================
+    if (pathname === '/') {
+      console.log('🔄 [Middleware] Redirigiendo / a /portal/');
+      return NextResponse.redirect(new URL('/portal/', req.url));
+    }
+
+    // ============================================
     // RÈGLE 1: ADMIN/AGENT en /portal → redirigir a /backOffice
     // ============================================
     if (pathname.startsWith('/portal') && token && ['ADMIN', 'AGENT'].includes(token.role as string)) {
