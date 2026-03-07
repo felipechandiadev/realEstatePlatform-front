@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientProviders from "./ClientProviders";
+import RootClient from "./RootClient";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getIdentity } from "@/features/backoffice/cms/actions/identity.action";
@@ -35,7 +36,9 @@ export default async function RootLayout({
       </head>
       <body>
         <ClientProviders session={session}>
-          {children}
+          <RootClient>
+            {children}
+          </RootClient>
         </ClientProviders>
       </body>
     </html>
