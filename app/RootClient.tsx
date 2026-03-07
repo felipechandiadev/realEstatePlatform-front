@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import FullScreenLoader from '@/shared/components/ui/FullScreenLoader/FullScreenLoader';
 import { useAssetsCacheDetection } from '@/shared/hooks/useAssetsCacheDetection';
 
@@ -10,22 +9,26 @@ interface RootClientProps {
 
 /**
  * Client wrapper for root layout to handle global loading screen
- * Shows loader only on first app load when assets aren't cached
+ * Shows loader on first app load when:
+ * - Assets aren't cached AND
+ * - Fonts are still loading
+ * 
+ * Auto-hides when:
+ * - Assets are from cache, OR
+ * - Fonts finish loading
  */
 export default function RootClient({ children }: RootClientProps) {
-  const { isFromCache } = useAssetsCacheDetection();
-  const [loaderComplete, setLoaderComplete] = useState(false);
+  const { isFromCache, isReady } = useAssetsCacheDetection();
 
-  // Show loader only if not from cache and not already shown
-  const showLoader = !isFromCache && !loaderComplete;
+  // Show loader if NOT from cache AND NOT ready (waiting for fonts)
+  const showLoader = !isFromCache && !isReady;
 
   return (
     <>
-      {/* Global full-screen loader */}
+      {/* Global full-screen loader - waits for fonts to load */}
       <FullScreenLoader 
-        isVisible={showLoader} 
-        duration={4000}
-        onComplete={() => setLoaderComplete(true)}
+        isVisible={showLoader}
+        // No duration limit here, waits for fonts (max 4s timeout in hook)
       />
 
       {/* App content */}
