@@ -731,3 +731,19 @@ body {
     background: rgba(var(--primary-rgb), 0.4);
   }
 }
+
+/* Smooth entrance animations */
+@keyframes slideInSmooth {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.slide-enter {
+  animation: slideInSmooth 0.8s ease-out forwards;
+}

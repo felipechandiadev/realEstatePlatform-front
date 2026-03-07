@@ -233,7 +233,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
                 }}
                 src={slide.multimediaUrl}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity ${
-                  i === current ? "opacity-100 z-10" : "opacity-0 z-0"
+                  i === current ? "opacity-100 z-10 slide-enter" : "opacity-0 z-0"
                 }`}
                 style={{ transition: `opacity ${transitionTime}ms linear` }}
                 autoPlay
@@ -268,7 +268,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
                 src={slide.multimediaUrl}
                 alt={slide.title}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity ${
-                  i === current ? "opacity-100 z-10" : "opacity-0 z-0"
+                  i === current ? "opacity-100 z-10 slide-enter" : "opacity-0 z-0"
                 }`}
                 style={{ transition: `opacity ${transitionTime}ms linear` }}
               />
@@ -278,7 +278,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
               <div
                 key={slide.id}
                 className={`absolute inset-0 w-full h-full transition-opacity ${
-                  i === current ? "opacity-100 z-10" : "opacity-0 z-0"
+                  i === current ? "opacity-100 z-10 slide-enter" : "opacity-0 z-0"
                 }`}
                 style={{ 
                   transition: `opacity ${transitionTime}ms linear`,
