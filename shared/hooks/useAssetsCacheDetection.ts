@@ -28,11 +28,12 @@ export function useAssetsCacheDetection() {
           return;
         }
 
-        // 3. Si no están en cache, esperar a que fonts carguen (max 4 segundos)
+        // 3. Si no están en cache, esperar a que fonts carguen indefinidamente
+        // (o timeout muy grande en caso de error)
         const fontTimeout = setTimeout(() => {
-          console.warn('[useAssetsCacheDetection] Font loading timeout');
+          console.warn('[useAssetsCacheDetection] Font loading timeout (120s)');
           setIsReady(true);
-        }, 4000);
+        }, 120000); // 120 segundos (está algo está muy mal)
 
         // document.fonts.ready espera a que todas las @font-face estén cargadas
         if (document.fonts) {
