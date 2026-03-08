@@ -7,6 +7,7 @@ import { NotificationProvider } from '@/providers/NotificationContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { SliderImagesReadyProvider } from '@/providers/SliderImagesReadyContext';
+import { SplashCompletedProvider } from '@/providers/SplashCompletedContext';
 
 import { AuthContextProvider } from "./providers";
 
@@ -31,9 +32,11 @@ export default function ClientProviders({ children, session }: Props & { session
         <AuthContextProvider>
           <AlertProvider>
             <NotificationProvider>
-              <SliderImagesReadyProvider>
-                {children}
-              </SliderImagesReadyProvider>
+              <SplashCompletedProvider>
+                <SliderImagesReadyProvider>
+                  {children}
+                </SliderImagesReadyProvider>
+              </SplashCompletedProvider>
             </NotificationProvider>
           </AlertProvider>
         </AuthContextProvider>
