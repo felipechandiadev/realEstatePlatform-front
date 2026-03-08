@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MapPin, Bed, Waves, Maximize2, ParkingSquare } from 'lucide-react';
+import { MapPin, Bed, Bath, Maximize2, ParkingSquare } from 'lucide-react';
 import { env } from '@/lib/env';
 import Link from 'next/link';
 
@@ -167,7 +167,7 @@ export default function RelatedPropertyCard({ property }: RelatedPropertyCardPro
             )}
             {property.bathrooms !== null && property.bathrooms !== undefined && (
               <div className="flex items-center gap-1">
-                <Waves size={16} />
+                <Bath size={16} />
                 <span>{property.bathrooms}</span>
               </div>
             )}

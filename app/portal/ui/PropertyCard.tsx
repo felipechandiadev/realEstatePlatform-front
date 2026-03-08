@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Bed, Waves, Home, Maximize2, ParkingSquare, Heart } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Bed, Bath, Home, Maximize2, ParkingSquare, Heart } from 'lucide-react';
 import { Button } from '@/shared/components/ui/Button/Button';
 import { env } from '@/lib/env';
 import { useAlert } from '@/shared/hooks/useAlert';
@@ -624,7 +624,7 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
           )}
           {showBathrooms && (
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <Waves size={20} className="text-primary" />
+              <Bath size={20} className="text-primary" />
               <span className="text-thin text-xs text-gray-700">{property.bathrooms}</span>
             </div>
           )}

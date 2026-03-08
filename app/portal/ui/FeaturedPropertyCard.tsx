@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Bed, Waves, Home } from 'lucide-react';
+import { Bed, Bath, Home } from 'lucide-react';
 
 export interface FeaturedProperty {
   id: string;
@@ -105,7 +105,7 @@ export default function FeaturedPropertyCard({ property }: FeaturedPropertyCardP
                 ) : null}
                 {property.bathrooms ? (
                   <div className="flex items-center gap-1">
-                    <Waves size={20} className="text-primary" />
+                    <Bath size={20} className="text-primary" />
                     <span>{property.bathrooms}</span>
                   </div>
                 ) : null}
