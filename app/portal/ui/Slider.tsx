@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getPublicSlides, Slide } from "@/features/backoffice/cms/actions/slides.action";
+import { useSliderImagesReady } from "@/providers/SliderImagesReadyContext";
 
 interface SliderProps {
   transitionTime?: number;
@@ -15,6 +16,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
   const [sliderHeight, setSliderHeight] = useState<number | null>(null);
   const videoRefs = React.useRef<{ [key: string]: HTMLVideoElement | null }>({});
   const sliderRef = useRef<HTMLDivElement>(null);
+  const { setSliderImagesReady } = useSliderImagesReady();
 
   // Calculate initial height to reach bottom of viewport
   useEffect(() => {
@@ -64,6 +66,73 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
 
     fetchSlides();
   }, []);
+
+  // Wait for images to be loaded before clearing splash screen
+  useEffect(() => {
+    if (slides.length === 0) {
+      setSliderImagesReady(false);
+      return;
+    }
+
+    // Pequeño delay para permitir que React renderice las imágenes en el DOM
+    const checkImagesReady = () => {
+      const sliderContainer = sliderRef.current;
+      if (!sliderContainer) {
+        setSliderImagesReady(false);
+        return;
+      }
+
+      // Buscar todas las imágenes en el slider
+      const images = sliderContainer.querySelectorAll('img');
+      
+      if (images.length === 0) {
+        // Si no hay imágenes (todos son videos o sin media), considerar listo
+        setSliderImagesReady(true);
+        return;
+      }
+
+      // Contar cuántas imágenes ya están cargadas
+      let loadedCount = 0;
+      let totalImages = images.length;
+
+      // Función para verificar si todos han cargado
+      const checkAllLoaded = () => {
+        if (loadedCount === totalImages) {
+          setSliderImagesReady(true);
+        }
+      };
+
+      // Agregar listeners a cada imagen
+      images.forEach((img) => {
+        const imgElement = img as HTMLImageElement;
+        
+        // Si la imagen ya está cargada (cached)
+        if (imgElement.complete) {
+          loadedCount++;
+        } else {
+          // Esperar a que cargue
+          imgElement.addEventListener('load', () => {
+            loadedCount++;
+            checkAllLoaded();
+          });
+
+          // En caso de error de carga, contar como cargada para no bloquear
+          imgElement.addEventListener('error', () => {
+            loadedCount++;
+            checkAllLoaded();
+          });
+        }
+      });
+
+      // Verificar inmediatamente por si todas ya están cargadas
+      checkAllLoaded();
+    };
+
+    // Esperar a que se rendericen las imágenes
+    const timer = setTimeout(checkImagesReady, 100);
+
+    return () => clearTimeout(timer);
+  }, [slides, setSliderImagesReady]);
 
   // Auto-advance effect
   useEffect(() => {
