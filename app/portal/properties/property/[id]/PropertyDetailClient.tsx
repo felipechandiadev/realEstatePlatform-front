@@ -103,7 +103,7 @@ export default function PropertyDetailClient({
     const loadRelatedProperties = async () => {
       try {
         setIsLoadingRelated(true);
-        const result = await getRelatedProperties(property.id, 5);
+        const result = await getRelatedProperties(property.id, 3);
         
         if (result.success && result.data) {
           setRelatedProperties(result.data);
