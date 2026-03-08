@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getPublicSlides, Slide } from "@/features/backoffice/cms/actions/slides.action";
 
 interface SliderProps {
@@ -296,12 +297,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
               className="absolute left-4 top-1/2 -translate-y-1/2 p-2"
               aria-label="Slide anterior"
             >
-              <span
-                className="material-symbols-rounded text-white drop-shadow-lg hover:text-gray-300 transition-colors"
-                style={{ fontSize: "4rem", fontVariationSettings: "'wght' 700" }}
-              >
-                chevron_left
-              </span>
+              <ChevronLeft size={64} className="text-white drop-shadow-lg hover:text-gray-300 transition-colors" strokeWidth={3} />
             </button>
             
             <button
@@ -309,12 +305,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
               className="absolute right-4 top-1/2 -translate-y-1/2 p-2"
               aria-label="Slide siguiente"
             >
-              <span
-                className="material-symbols-rounded text-white drop-shadow-lg hover:text-gray-300 transition-colors"
-                style={{ fontSize: "4rem", fontVariationSettings: "'wght' 700" }}
-              >
-                chevron_right
-              </span>
+              <ChevronRight size={64} className="text-white drop-shadow-lg hover:text-gray-300 transition-colors" strokeWidth={3} />
             </button>
           </>
         )}
