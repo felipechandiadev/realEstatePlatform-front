@@ -242,7 +242,7 @@ const Select: React.FC<SelectProps> = ({ label, options, placeholder, value = nu
               {selected ? selected.label : placeholder || '-'}
             </span>
             <ChevronDown 
-              size={16}
+              size={24}
               className={`transition-transform ${open ? 'rotate-180' : ''} ${
                 focused ? 'text-primary' : 'text-secondary'
               }`}
@@ -352,7 +352,7 @@ const Select: React.FC<SelectProps> = ({ label, options, placeholder, value = nu
           <IconButton
             icon="chevron_down"
             variant="text"
-            className={`absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center ${focused ? 'text-primary' : 'text-secondary'}`}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center ${focused ? 'text-primary' : 'text-secondary'}`}
             tabIndex={-1}
             aria-label="Desplegar opciones"
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.stopPropagation(); !disabled && setOpen(!open); }}

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { Bed, Bath, Home, Maximize2, ParkingSquare, Heart, Plus } from 'lucide-react';
 import { getPublishedPropertyPublic, notifyPropertyInterest, getRelatedProperties, Property } from './actions';
 import { Button } from '@/shared/components/ui/Button/Button';
 import { TextField } from '@/shared/components/ui/TextField/TextField';
@@ -334,9 +335,7 @@ export default function PropertyDetailClient({
                   {/* Características */}
                   {property.bedrooms != null && property.bedrooms > 0 && (
                     <div className="flex items-center space-x-1">
-                      <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                        bed
-                      </span>
+                      <Bed size={20} className="text-primary" />
                       <span className="text-xs text-foreground">
                         {property.bedrooms}
                       </span>
@@ -344,9 +343,7 @@ export default function PropertyDetailClient({
                   )}
                   {property.bathrooms != null && property.bathrooms > 0 && (
                     <div className="flex items-center space-x-1">
-                      <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                        bathtub
-                      </span>
+                      <Bath size={20} className="text-primary" />
                       <span className="text-xs text-foreground">
                         {property.bathrooms}
                       </span>
@@ -354,9 +351,7 @@ export default function PropertyDetailClient({
                   )}
                   {property.builtSquareMeters != null && property.builtSquareMeters > 0 && (
                     <div className="flex items-center space-x-1">
-                      <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                        home
-                      </span>
+                      <Home size={20} className="text-primary" />
                       <span className="text-xs text-foreground">
                         {Math.round(property.builtSquareMeters)}
                       </span>
@@ -364,9 +359,7 @@ export default function PropertyDetailClient({
                   )}
                   {property.landSquareMeters != null && property.landSquareMeters > 0 && (
                     <div className="flex items-center space-x-1">
-                      <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                        screenshot_frame_2
-                      </span>
+                      <Maximize2 size={20} className="text-primary" />
                       <span className="text-xs text-foreground">
                         {property.landSquareMeters}
                       </span>
@@ -374,9 +367,7 @@ export default function PropertyDetailClient({
                   )}
                   {property.parkingSpaces != null && property.parkingSpaces > 0 && (
                     <div className="flex items-center space-x-1">
-                      <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                        parking_sign
-                      </span>
+                      <ParkingSquare size={20} className="text-primary" />
                       <span className="text-xs text-foreground">
                         {property.parkingSpaces}
                       </span>
@@ -391,16 +382,15 @@ export default function PropertyDetailClient({
                         className="flex items-center justify-center p-1 rounded-full transition-all duration-200 hover:scale-110 disabled:opacity-50"
                         title={isFavorited ? 'Remover de favoritos' : 'Agregar a favoritos'}
                       >
-                        <span
-                          className={`material-symbols-outlined transition-all ${
+                        <Heart
+                          size={22}
+                          fill={isFavorited ? 'currentColor' : 'none'}
+                          className={`transition-all ${
                             isFavorited
-                              ? 'text-red-500 fill-red-500'
+                              ? 'text-red-500'
                               : 'text-gray-400 hover:text-red-500'
                           }`}
-                          style={{ fontSize: '22px' }}
-                        >
-                          {isFavorited ? 'favorite' : 'favorite_border'}
-                        </span>
+                        />
                       </button>
                     </div>
                   )}
@@ -426,9 +416,7 @@ export default function PropertyDetailClient({
                       onClick={() => setShowDescriptionDialog(true)}
                       className="w-full sm:w-auto"
                     >
-                      <span className="material-symbols-outlined text-sm mr-2">
-                        add
-                      </span>
+                      <Plus size={16} className="mr-2" />
                       Ver todo
                     </Button>
                   </div>
