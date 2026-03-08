@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface SliderImagesReadyContextType {
   areSliderImagesReady: boolean;
@@ -10,7 +10,8 @@ interface SliderImagesReadyContextType {
 const SliderImagesReadyContext = createContext<SliderImagesReadyContextType | undefined>(undefined);
 
 export function SliderImagesReadyProvider({ children }: { children: React.ReactNode }) {
-  const [areSliderImagesReady, setSliderImagesReady] = useState(false);
+  // Default to true - splash should not be blocked by slider on routes without it
+  const [areSliderImagesReady, setSliderImagesReady] = useState(true);
 
   return (
     <SliderImagesReadyContext.Provider value={{ areSliderImagesReady, setSliderImagesReady }}>

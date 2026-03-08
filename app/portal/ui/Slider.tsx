@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getPublicSlides, Slide } from "@/features/backoffice/cms/actions/slides.action";
 import { useSliderImagesReady } from "@/providers/SliderImagesReadyContext";
+import { usePathname } from "next/navigation";
 
 interface SliderProps {
   transitionTime?: number;
@@ -17,6 +18,10 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
   const videoRefs = React.useRef<{ [key: string]: HTMLVideoElement | null }>({});
   const sliderRef = useRef<HTMLDivElement>(null);
   const { setSliderImagesReady } = useSliderImagesReady();
+  const pathname = usePathname();
+  
+  // Only track slider images for the main /portal page, not /portal/* subpages
+  const isMainPortalPage = pathname === '/portal';
 
   // Calculate initial height to reach bottom of viewport
   useEffect(() => {
@@ -68,7 +73,13 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
   }, []);
 
   // Wait for images to be loaded before clearing splash screen
+  // Only track on main /portal page, not on /portal/* subpages
   useEffect(() => {
+    // Only report image loading state on main /portal page
+    if (!isMainPortalPage) {
+      return;
+    }
+
     if (slides.length === 0) {
       setSliderImagesReady(false);
       return;
@@ -132,7 +143,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
     const timer = setTimeout(checkImagesReady, 100);
 
     return () => clearTimeout(timer);
-  }, [slides, setSliderImagesReady]);
+  }, [slides, setSliderImagesReady, isMainPortalPage]);
 
   // Auto-advance effect
   useEffect(() => {
