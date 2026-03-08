@@ -2,6 +2,7 @@
 
 import React, { useCallback, useMemo, useState, useTransition } from 'react';
 import { useSession } from 'next-auth/react';
+import { ImageOff, User } from 'lucide-react';
 // Logo removed from sidebar per request
 import { Button } from '../Button/Button';
 import { useSidebarMenuState } from './SidebarMenuStateContext';
@@ -180,9 +181,7 @@ const SideBar: React.FC<SideBarProps> = ({ menuItems, className, style, onClose,
             {(!logoLoaded || logoError) && (
               <div className="h-20 w-20 bg-neutral-300 rounded-lg flex items-center justify-center mx-auto mb-2" data-test-id="side-bar-logo-skeleton">
                 {logoError && (
-                  <span className="material-symbols-outlined text-neutral-400" style={{ fontSize: 32 }}>
-                    image_not_supported
-                  </span>
+                  <ImageOff className="text-neutral-400" size={32} />
                 )}
               </div>
             )}
@@ -208,7 +207,7 @@ const SideBar: React.FC<SideBarProps> = ({ menuItems, className, style, onClose,
         return (
           <div className="w-full px-6 mb-6">
             <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 gap-3" style={{ background: 'transparent', borderWidth: '0.3px' }}>
-              <span className="material-symbols-outlined text-black text-3xl">person</span>
+              <User className="text-black" size={32} />
               <div className="flex flex-col min-w-0">
                 <span className="text-base font-bold truncate">{u.userName}</span>
                 <span className="text-xs opacity-60 capitalize truncate">{ROLE_LABELS[u.role as keyof typeof ROLE_LABELS] || u.role}</span>

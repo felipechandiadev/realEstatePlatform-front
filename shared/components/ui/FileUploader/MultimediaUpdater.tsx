@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useCallback } from 'react';
+import { User, ImageOff } from 'lucide-react';
 import IconButton from '../IconButton/IconButton';
 import Alert from '../Alert/Alert';
 import { MultimediaUpdaterProps } from './types';
@@ -124,7 +125,7 @@ const MultimediaUpdater: React.FC<MultimediaUpdaterProps> = ({
   const renderPreview = () => {
     if (!previewUrl) {
       if (variant === 'avatar') {
-        return <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>person</span>;
+        return <User className="text-secondary" size={64} />;
       }
       return <div className="flex items-center justify-center h-full text-gray-400">Sin multimedia</div>;
     }
@@ -133,7 +134,7 @@ const MultimediaUpdater: React.FC<MultimediaUpdaterProps> = ({
     if (imageError) {
       return (
         <div className="flex items-center justify-center h-full">
-          <span className="material-symbols-outlined text-gray-400" style={{ fontSize: '3rem' }}>image_not_supported</span>
+          <ImageOff className="text-gray-400" size={48} />
         </div>
       );
     }
@@ -173,9 +174,7 @@ const MultimediaUpdater: React.FC<MultimediaUpdaterProps> = ({
             {previewUrl ? (
               renderPreview()
             ) : (
-              <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>
-                person
-              </span>
+              <User className="text-secondary" size={64} />
             )}
             {allowDragDrop && isDragOver && (
               <div className="absolute inset-0 bg-blue-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded-full">

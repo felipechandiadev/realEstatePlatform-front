@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useContext, useMemo, useCallback, useEffect } from 'react';
 import Image from 'next/image';
+import { Bell, Menu } from 'lucide-react';
 import SideBar, { SideBarMenuItem } from './SideBar';
 import { SidebarMenuStateProvider } from './SidebarMenuStateContext';
 import { useSession } from 'next-auth/react';
@@ -165,9 +166,7 @@ const TopBar: React.FC<TopBarProps> = ({
                   className="relative flex h-10 w-10 items-center justify-center rounded-full transition-colors text-foreground hover:text-primary focus:outline-none"
                   aria-label="Ver notificaciones"
                 >
-                  <span className="material-symbols-outlined text-2xl">
-                    notifications
-                  </span>
+                  <Bell size={24} className="text-foreground" />
                   {unreadCount > 0 && (
                     <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white ring-1 ring-background">
                       {unreadCount > 99 ? '99+' : unreadCount}
@@ -191,9 +190,7 @@ const TopBar: React.FC<TopBarProps> = ({
                 data-test-id="top-bar-menu-button"
                 aria-label="Abrir menú"
               >
-                <span className="material-symbols-outlined text-2xl" aria-hidden>
-                  menu
-                </span>
+                <Menu size={24} className="text-foreground" aria-hidden />
               </button>
             </div>
           </header>

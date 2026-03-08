@@ -1,4 +1,5 @@
 import React from 'react';
+import { Bell, Hourglass } from 'lucide-react';
 import { useNotification } from '@/providers/NotificationContext';
 
 interface NotificationButtonProps {
@@ -26,13 +27,11 @@ const NotificationButton: React.FC<NotificationButtonProps> = ({
       data-test-id={dataTestId}
       aria-label="Notificaciones"
     >
-      <span
-        className="material-symbols-outlined cursor-pointer"
-        style={{ fontSize: 32, width: 32, height: 32, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-        aria-hidden
-      >
-        {loading.count ? 'hourglass_empty' : 'notifications'}
-      </span>
+      {loading.count ? (
+        <Hourglass size={32} className="cursor-pointer" aria-hidden />
+      ) : (
+        <Bell size={32} className="cursor-pointer" aria-hidden />
+      )}
       {displayCount > 0 && (
         <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center min-w-[18px]">
           {displayCount > 99 ? '99+' : displayCount}

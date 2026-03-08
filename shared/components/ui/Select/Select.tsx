@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from "react";
+import { ChevronDown } from "lucide-react";
 import DropdownList, { dropdownOptionClass } from "@/shared/components/ui/DropdownList/DropdownList";
 import IconButton from "@/shared/components/ui/IconButton/IconButton";
 import { TextField } from "@/shared/components/ui/TextField/TextField";
@@ -240,11 +241,12 @@ const Select: React.FC<SelectProps> = ({ label, options, placeholder, value = nu
             }`}>
               {selected ? selected.label : placeholder || '-'}
             </span>
-            <span className={`material-symbols-outlined text-base transition-transform ${open ? 'rotate-180' : ''} ${
-              focused ? 'text-primary' : 'text-secondary'
-            }`}>
-              expand_more
-            </span>
+            <ChevronDown 
+              size={16}
+              className={`transition-transform ${open ? 'rotate-180' : ''} ${
+                focused ? 'text-primary' : 'text-secondary'
+              }`}
+            />
           </div>
 
           <DropdownList 

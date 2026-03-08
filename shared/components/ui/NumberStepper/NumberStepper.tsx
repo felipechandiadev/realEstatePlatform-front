@@ -1,5 +1,8 @@
 'use client';
 import React, { useState, useRef } from 'react';
+import { Plus, Minus } from 'lucide-react';
+import { ICON_MAP } from '../IconButton/ICON_MAP';
+import * as LucideIcons from 'lucide-react';
 
 interface NumberStepperProps {
   label?: string; // Ahora opcional
@@ -172,11 +175,14 @@ export const NumberStepper: React.FC<NumberStepperProps> = ({
     // Si no hay label ni icono, no renderizar nada
     if (!label && !icon) return null;
 
-    const iconElement = icon ? (
-      <span className="material-symbols-outlined text-gray-600 text-[10px]">
-        {icon}
-      </span>
-    ) : null;
+    let iconElement = null;
+    if (icon) {
+      const mappedName = ICON_MAP[icon] || 'HelpCircle';
+      const IconComponent = (LucideIcons as any)[mappedName];
+      if (IconComponent) {
+        iconElement = <IconComponent size={16} className="text-gray-600" />;
+      }
+    }
 
     const labelElement = label ? (
       <label className={`${labelClasses} ${icon && iconPosition === 'beside' ? 'ml-1' : ''} line-clamp-1 lg:line-clamp-none inline-block max-w-full`}>
@@ -239,7 +245,7 @@ export const NumberStepper: React.FC<NumberStepperProps> = ({
           className={`${buttonClasses} rounded-l-md border-r-[1px] border-border`}
           data-test-id={`${props['data-test-id']}-decrement`}
         >
-          <span className="material-symbols-outlined text-gray-600 text-sm">remove</span>
+          <Minus size={16} className="text-gray-600" />
         </button>
 
         {/* Input y Label/Icono - Contenedor centrado */}
@@ -274,7 +280,7 @@ export const NumberStepper: React.FC<NumberStepperProps> = ({
           className={`${buttonClasses} rounded-r-md border-l-[1px] border-border`}
           data-test-id={`${props['data-test-id']}-increment`}
         >
-          <span className="material-symbols-outlined text-gray-600 text-sm">add</span>
+          <Plus size={16} className="text-gray-600" />
         </button>
       </div>
     </>
