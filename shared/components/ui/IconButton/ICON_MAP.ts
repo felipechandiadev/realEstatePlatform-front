@@ -359,7 +359,6 @@ export const ICON_MAP: Record<string, string> = {
   browser_not_supported: 'AlertCircle',
   browser_updated: 'CheckCircle',
   brunch_dining: 'Coffee',
-  brush: 'Palette',
   bubble_chart: 'PieChart',
   bubbles: 'MessageCircle',
   bug_report: 'AlertCircle',

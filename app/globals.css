@@ -745,5 +745,5 @@ body {
 }
 
 .slide-enter {
-  animation: slideInSmooth 0.8s ease-out forwards;
+  animation: slideInSmooth 1.5s ease-in-out forwards;
 }
