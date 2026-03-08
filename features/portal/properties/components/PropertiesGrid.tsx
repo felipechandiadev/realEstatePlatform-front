@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Card from '@/shared/components/ui/Card/Card';
 import { Button } from '@/shared/components/ui/Button/Button';
 import LazyImage from '@/shared/components/ui/LazyImage';
+import PropertyCardSkeleton from '@/shared/components/ui/PropertyCardSkeleton/PropertyCardSkeleton';
 import type { Property } from '@/features/portal/properties/types';
 
 interface PropertiesGridProps {
@@ -76,8 +77,12 @@ export default function PropertiesGrid({
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center py-20">
-        <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+      <div className={`properties-grid ${className}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: pageSize }).map((_, i) => (
+            <PropertyCardSkeleton key={i} />
+          ))}
+        </div>
       </div>
     );
   }

@@ -3,6 +3,7 @@
 import React, { useMemo } from 'react';
 import { Button } from '@/shared/components/ui/Button/Button';
 import PropertyCard, { type PortalProperty } from '@/app/portal/ui/PropertyCard';
+import PropertyCardSkeleton from '@/shared/components/ui/PropertyCardSkeleton/PropertyCardSkeleton';
 
 interface PropertyVariant {
   id?: string;
@@ -121,8 +122,12 @@ export default function PropertiesForRentGrid({
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center py-20">
-        <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+      <div className={`properties-for-rent-grid ${className}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: pageSize }).map((_, i) => (
+            <PropertyCardSkeleton key={i} />
+          ))}
+        </div>
       </div>
     );
   }
