@@ -54,7 +54,7 @@ export default function FullScreenLoader({
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-background/95 backdrop-blur-sm animate-in fade-in duration-300" style={{ zIndex: 9999 }}>
+    <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-background animate-in fade-in duration-300" style={{ zIndex: 9999 }}>
       <h1 className="text-5xl md:text-6xl font-bold text-primary">
         EstateFlow
       </h1>
