@@ -3,65 +3,45 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Detecta si los assets están cargados y espera a que las fuentes estén listas
- * GARANTIZA espera mínima de 1 segundo (para que splash screen sea visible)
+ * Detecta si los assets están en cache
+ * Con Lucide React (SVG), ya no dependemos de fuentes externas
+ * Solo espera tiempo mínimo para que splash screen sea visible
  * 
- * @returns { isReady: boolean, isLoading: boolean }
+ * @returns { isReady: boolean, isLoading: boolean, isFromCache: boolean }
  * 
  * isReady = true cuando:
- * - Fuentes han cargado completamente Y pasó 1 segundo mínimo
- * - O timeout de 120s + 1 segundo mínimo
+ * - Cache fue detectado (sin espera) O
+ * - Pasó 1 segundo mínimo (splash screen elegante)
  */
 export function useAssetsCacheDetection() {
   const [isReady, setIsReady] = useState<boolean | null>(null);
   const [isFromCache, setIsFromCache] = useState<boolean>(false);
 
   useEffect(() => {
-    const checkAssetsAndFonts = async () => {
-      // Track start time for minimum wait
+    const checkCache = async () => {
       const startTime = Date.now();
-      const minWaitMs = 1000; // Esperar mínimo 1 segundo
+      const minWaitMs = 1000; // Mínimo 1 segundo para splash screen elegante
 
       try {
-        // 1. Check si assets están en cache
+        // Detectar si assets están en cache (transfer size = 0)
         const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
         const allFromCache = resources.length > 0 && resources.every(r => r.transferSize === 0);
         setIsFromCache(allFromCache);
 
-        // 2. Esperar a fonts + garantizar 1 segundo mínimo
-        let fontsReady = false;
-
-        // Timeout fallback de 120 segundos
-        const fontTimeout = setTimeout(() => {
-          console.warn('[useAssetsCacheDetection] Font loading timeout (120s)');
-          fontsReady = true;
-        }, 120000);
-
-        // Esperar a que fonts carguen
-        if (document.fonts) {
-          await document.fonts.ready;
-          fontsReady = true;
-          clearTimeout(fontTimeout);
-        } else {
-          // Fallback si Font Loading API no está disponible
-          clearTimeout(fontTimeout);
-          fontsReady = true;
-        }
-
-        // 3. Asegurar que pasó mínimo 1 segundo
+        // Si está en cache, mostrar loader más corto
+        // Si no está en cache, esperar al menos 1 segundo para splash elegante
+        const waitMs = allFromCache ? 300 : minWaitMs;
         const elapsedMs = Date.now() - startTime;
-        if (elapsedMs < minWaitMs) {
-          await new Promise(resolve => setTimeout(resolve, minWaitMs - elapsedMs));
+        
+        if (elapsedMs < waitMs) {
+          await new Promise(resolve => setTimeout(resolve, waitMs - elapsedMs));
         }
 
-        // 4. Ahora sí, marcar como ready
-        if (fontsReady) {
-          setIsReady(true);
-        }
+        setIsReady(true);
       } catch (error) {
         console.error('[useAssetsCacheDetection] Error:', error);
         
-        // Fallback: asegurar 1 segundo mínimo
+        // Fallback: esperar 1 segundo mínimo
         const elapsedMs = Date.now() - startTime;
         if (elapsedMs < minWaitMs) {
           await new Promise(resolve => setTimeout(resolve, minWaitMs - elapsedMs));
@@ -73,7 +53,7 @@ export function useAssetsCacheDetection() {
 
     // Pequeño delay para que performance API registre recursos
     const timer = setTimeout(() => {
-      checkAssetsAndFonts();
+      checkCache();
     }, 100);
 
     return () => clearTimeout(timer);
