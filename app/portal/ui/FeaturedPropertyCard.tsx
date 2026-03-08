@@ -46,10 +46,7 @@ export default function FeaturedPropertyCard({ property }: FeaturedPropertyCardP
         style={{ backgroundColor: 'transparent' }}
       >
         <div 
-          className="relative aspect-video w-full overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 60%, rgba(4, 201, 231, 0.6) 100%)'
-          }}
+          className="relative aspect-video w-full overflow-hidden bg-white"
         >
           {property.mainImageUrl && !imageError ? (
             <img

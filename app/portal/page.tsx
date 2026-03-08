@@ -92,7 +92,7 @@ export default async function PortalPage({ searchParams }: PortalPageProps) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-6">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-primary mb-2 tracking-tight">
-              PROPIEDADES DESTACADAS
+              Propiedades Destacadas
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground font-light">
               Explora nuestras propiedades más destacadas seleccionadas especialmente para ti.

@@ -487,10 +487,9 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
     if (!mediaSrc) {
       return (
         <div 
-          className="flex items-center justify-center w-full h-full" 
+          className="flex items-center justify-center w-full h-full bg-white" 
           style={{ 
-            aspectRatio: '16/9',
-            background: 'linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 60%, rgba(4, 201, 231, 0.6) 100%)'
+            aspectRatio: '16/9'
           }}
         >
         </div>
@@ -574,10 +573,7 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
 
       <div className="flex-1 flex flex-col">
         <div
-          className="flex items-center justify-center w-full aspect-[16/9] text-gray-400 overflow-hidden relative"
-          style={{
-            background: 'linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 60%, rgba(4, 201, 231, 0.6) 100%)'
-          }}
+          className="flex items-center justify-center w-full aspect-[16/9] text-gray-400 overflow-hidden relative bg-white"
           data-test-id="property-card-media"
         >
           {mediaEl}
@@ -613,7 +609,7 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
         </div>
 
         <div
-          className="property-icons-container justify-center flex items-center gap-3 px-4 py-1 md:py-2 bg-gray-100 shrink-0"
+          className="property-icons-container justify-center flex items-center gap-3 px-4 py-1 md:py-2 bg-secondary/30 shrink-0"
           data-test-id="property-card-icons"
         >
           {showBedrooms && (
