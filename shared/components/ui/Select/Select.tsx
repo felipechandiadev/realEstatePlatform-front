@@ -350,7 +350,7 @@ const Select: React.FC<SelectProps> = ({ label, options, placeholder, value = nu
           )}
         
           <IconButton
-            icon="arrow_drop_down"
+            icon="chevron_down"
             variant="text"
             className={`absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center ${focused ? 'text-primary' : 'text-secondary'}`}
             tabIndex={-1}
