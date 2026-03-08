@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import { AlertCircle } from 'lucide-react';
 import type * as L from 'leaflet';
 
 /**
@@ -363,7 +364,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
         <div className="absolute top-2 right-2 z-[1000] max-w-xs">
           <div className="bg-red-50 border border-red-200 rounded-lg p-3 shadow-sm">
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-red-500 text-lg">error</span>
+              <AlertCircle size={20} className="text-red-500 flex-shrink-0" />
               <span className="text-red-700 text-sm font-medium">{locationError}</span>
             </div>
           </div>

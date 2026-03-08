@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import { Upload, FileText, X } from 'lucide-react';
 import { Button } from '@/shared/components/ui/Button/Button';
 
 type FileUploaderProps = {
@@ -103,9 +104,7 @@ export default function FileUploader({
             }
           `}
         >
-          <span className="material-symbols-outlined text-4xl text-muted-foreground mb-2 transition-transform group-hover:scale-110">
-            upload_file
-          </span>
+          <Upload size={36} className="text-muted-foreground mb-2 transition-transform group-hover:scale-110" />
           <p className="text-sm text-muted-foreground text-center transition-transform group-hover:scale-[1.03]">
             <span className="font-semibold">{label || 'Haga clic para seleccionar'}</span>
             <br />
@@ -118,9 +117,7 @@ export default function FileUploader({
       ) : (
         <div className="flex items-center justify-between p-4 border border-border rounded-lg bg-background">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-2xl text-blue-500">
-              description
-            </span>
+            <FileText size={24} className="text-blue-500" />
             <div>
               <p className="text-sm font-medium text-foreground">{selectedFile.name}</p>
               <p className="text-xs text-muted-foreground">
@@ -134,7 +131,7 @@ export default function FileUploader({
             disabled={disabled}
             className="text-red-500 hover:text-red-600"
           >
-            <span className="material-symbols-outlined">close</span>
+            <X size={20} />
           </Button>
         </div>
       )}

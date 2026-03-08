@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Send, Hourglass } from 'lucide-react'
 import Dialog from '@/shared/components/ui/Dialog/Dialog'
 import { TextField } from '@/shared/components/ui/TextField/TextField'
 import { Button } from '@/shared/components/ui/Button/Button'
@@ -151,12 +152,12 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ open, onClose }) => {
           >
             {loading ? (
               <>
-                <span className="material-symbols-outlined text-base animate-spin">hourglass_empty</span>
+                <Hourglass size={16} className="animate-spin" />
                 Enviando...
               </>
             ) : (
               <>
-                <span className="material-symbols-outlined text-base">send</span>
+                <Send size={16} />
                 Enviar
               </>
             )}

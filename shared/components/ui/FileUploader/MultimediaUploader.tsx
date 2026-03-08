@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from 'react';
+import { User, Image, Video } from 'lucide-react';
 import { Button } from '../Button/Button';
 import IconButton from '../IconButton/IconButton';
 // TODO: Create shared/hooks/useAlert hook
@@ -203,9 +204,7 @@ export const MultimediaUploader: React.FC<MultimediaUploaderProps> = ({
                 className="w-full h-full object-cover rounded-full"
               />
             ) : (
-              <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>
-                person
-              </span>
+              <User size={64} className="text-secondary" />
             )}
           </div>
 
@@ -231,9 +230,7 @@ export const MultimediaUploader: React.FC<MultimediaUploaderProps> = ({
               />
             ) : (
               <div className="flex items-center justify-center gap-6">
-                <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>
-                  image
-                </span>
+                <Image size={64} className="text-secondary" />
                 <IconButton
                   icon="add"
                   variant="containedSecondary"
@@ -319,9 +316,7 @@ export const MultimediaUploader: React.FC<MultimediaUploaderProps> = ({
 
                   {/* Indicador de tipo de archivo */}
                   <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white p-2 rounded-full flex items-center justify-center">
-                    <span className="material-symbols-outlined text-sm leading-none">
-                      {isVideo ? 'videocam' : 'image'}
-                    </span>
+                    {isVideo ? <Video size={16} /> : <Image size={16} />}
                   </div>
                 </div>
               );

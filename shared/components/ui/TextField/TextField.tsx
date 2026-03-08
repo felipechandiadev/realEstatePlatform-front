@@ -1,4 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import * as LucideIcons from "lucide-react";
+import { ICON_MAP } from "../IconButton/ICON_MAP";
 
 interface TextFieldProps {
   label?: string;
@@ -366,15 +369,17 @@ export const TextField: React.FC<TextFieldProps> = ({
   return (
     <div className={variante === "autocomplete" ? "relative w-full" : "input-container"}>
       <div className={`relative ${className}`} data-test-id="text-field-root">
-      {typeof startIcon === 'string' && startIcon.length > 0 && (
-        <span
-          className={`input-icon material-symbols-outlined ${disabled ? 'text-muted-foreground opacity-50' : 'text-secondary'}`}
-          style={{ fontSize: 20, width: 20, height: 20, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-
-        >
-          {startIcon}
-        </span>
-      )}
+      {typeof startIcon === 'string' && startIcon.length > 0 && (() => {
+        const mappedIcon = ICON_MAP[startIcon as keyof typeof ICON_MAP];
+        const IconComponent = mappedIcon ? (LucideIcons as any)[mappedIcon] : (LucideIcons as any).HelpCircle;
+        return (
+          <IconComponent
+            size={20}
+            className={`input-icon ${disabled ? 'text-muted-foreground opacity-50' : 'text-secondary'}`}
+            style={{ width: 20, height: 20, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          />
+        );
+      })()}
       {startIcon === undefined && startAdornment && (
         <span
           className={`input-icon ${disabled ? 'text-muted-foreground opacity-50' : 'text-secondary'}`}
@@ -459,13 +464,7 @@ export const TextField: React.FC<TextFieldProps> = ({
               aria-pressed={showPassword}
               data-test-id="password-visibility-toggle"
             >
-              <span
-                className="material-symbols-outlined"
-                style={{ fontSize: 20, width: 20, height: 20, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-                aria-hidden
-              >
-                {showPassword ? "visibility_off" : "visibility"}
-              </span>
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           )}
         </div>
@@ -507,15 +506,17 @@ export const TextField: React.FC<TextFieldProps> = ({
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      {typeof endIcon === 'string' && endIcon.length > 0 && (
-        <span
-          className={`input-icon-right material-symbols-outlined ${isDisabled ? 'text-muted-foreground opacity-50' : 'text-secondary'}`}
-          style={{ fontSize: 20, width: 20, height: 20, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-
-        >
-          {endIcon}
-        </span>
-      )}
+      {typeof endIcon === 'string' && endIcon.length > 0 && (() => {
+        const mappedIcon = ICON_MAP[endIcon as keyof typeof ICON_MAP];
+        const IconComponent = mappedIcon ? (LucideIcons as any)[mappedIcon] : (LucideIcons as any).HelpCircle;
+        return (
+          <IconComponent
+            size={20}
+            className={`input-icon-right ${isDisabled ? 'text-muted-foreground opacity-50' : 'text-secondary'}`}
+            style={{ width: 20, height: 20, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          />
+        );
+      })()}
       {(error || helperText) && (
         <p className={`mt-1 text-xs ${error ? 'text-red-500' : 'text-muted-foreground'}`}>
           {error ?? helperText}

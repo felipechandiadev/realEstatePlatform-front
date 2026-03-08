@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useCallback } from 'react';
-import { User, ImageOff } from 'lucide-react';
+import { User, ImageOff, Image } from 'lucide-react';
 import IconButton from '../IconButton/IconButton';
 import Alert from '../Alert/Alert';
 import { MultimediaUpdaterProps } from './types';
@@ -202,9 +202,7 @@ const MultimediaUpdater: React.FC<MultimediaUpdaterProps> = ({
               renderPreview()
             ) : (
               <div className="flex items-center justify-center gap-6">
-                <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>
-                  image
-                </span>
+                <Image size={64} className="text-secondary" />
                 <IconButton
                   icon="add"
                   variant="containedSecondary"

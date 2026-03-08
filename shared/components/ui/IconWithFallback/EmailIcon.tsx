@@ -1,27 +1,27 @@
 'use client';
 
+import { Mail } from 'lucide-react';
+
 export interface EmailIconProps {
   className?: string;
   style?: React.CSSProperties;
 }
 
 /**
- * Email icon component with Material Symbols fallback.
- * Uses inline SVG if needed for reliable rendering on slow connections.
+ * Email icon component using Lucide React
  */
 export function EmailIcon({ className = '', style }: EmailIconProps) {
   return (
-    <span 
-      className={`material-symbols-outlined ${className}`}
+    <Mail 
+      className={`inline-block ${className}`}
       style={style}
-    >
-      email
-    </span>
+      aria-hidden="true"
+    />
   );
 }
 
 /**
- * SVG fallback version if Material Symbols fails to load
+ * SVG fallback version if Lucide fails to load
  */
 export function EmailIconSVG({ className = '', style }: EmailIconProps) {
   return (

@@ -1,27 +1,27 @@
 'use client';
 
+import { Phone } from 'lucide-react';
+
 export interface PhoneIconProps {
   className?: string;
   style?: React.CSSProperties;
 }
 
 /**
- * Phone icon component with Material Symbols fallback.
- * Uses inline SVG if needed for reliable rendering on slow connections.
+ * Phone icon component using Lucide React
  */
 export function PhoneIcon({ className = '', style }: PhoneIconProps) {
   return (
-    <span 
-      className={`material-symbols-outlined ${className}`}
+    <Phone 
+      className={`inline-block ${className}`}
       style={style}
-    >
-      phone
-    </span>
+      aria-hidden="true"
+    />
   );
 }
 
 /**
- * SVG fallback version if Material Symbols fails to load
+ * SVG fallback version if Lucide fails to load
  */
 export function PhoneIconSVG({ className = '', style }: PhoneIconProps) {
   return (

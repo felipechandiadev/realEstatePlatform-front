@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
+import * as LucideIcons from 'lucide-react'
+import { ICON_MAP } from '../IconButton/ICON_MAP'
 import { Button, ButtonVariant } from '@/shared/components/ui/Button/Button'
 import Dialog from '@/shared/components/ui/Dialog/Dialog'
 import DeleteBaseForm from '@/shared/components/ui/BaseForm/DeleteBaseForm'
@@ -52,7 +54,11 @@ export default function DeleteButton({
         className={className}
         disabled={disabled}
       >
-        {icon && <span className="material-symbols-outlined mr-2 text-lg">{icon}</span>}
+        {icon && (() => {
+          const mappedName = ICON_MAP[icon] || 'HelpCircle'
+          const IconComponent = (LucideIcons as any)[mappedName]
+          return IconComponent ? <IconComponent size={20} className="mr-2 inline" /> : null
+        })()}
         {buttonText}
       </Button>
 

@@ -1,4 +1,6 @@
 import React from "react";
+import * as LucideIcons from 'lucide-react';
+import { ICON_MAP } from '../IconButton/ICON_MAP';
 
 interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	icon: string;
@@ -38,20 +40,20 @@ const IconButton: React.FC<IconButtonProps> = ({
 	...props
 }) => {
 	const iconSize = sizePixels[size];
-	const padding = sizePadding[size];
+	const mappedName = ICON_MAP[icon] || 'HelpCircle';
+	const IconComponent = (LucideIcons as any)[mappedName];
 	
 	return (
 		<button
-			className={`inline-flex items-center justify-center ${padding} rounded-full ${variantClasses[variant] || variantClasses.primary} ${className}`}
+			className={`inline-flex items-center justify-center ${sizePadding[size]} rounded-full ${variantClasses[variant] || variantClasses.primary} ${className}`}
 			{...props}
 		>
-			<span 
-				className="material-symbols-outlined" 
-				aria-hidden="true"
-				style={{ fontSize: `${iconSize}px` }}
-			>
-				{icon}
-			</span>
+			{IconComponent && (
+				<IconComponent 
+					size={iconSize}
+					aria-hidden="true"
+				/>
+			)}
 		</button>
 	);
 };
