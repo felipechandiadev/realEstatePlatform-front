@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Bed, Waves, Home, Maximize2, ParkingSquare, Heart } from 'lucide-react';
 import { Button } from '@/shared/components/ui/Button/Button';
 import { env } from '@/lib/env';
 import { useAlert } from '@/shared/hooks/useAlert';
@@ -593,9 +594,7 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
                 className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-all duration-200 opacity-80 hover:opacity-100 shadow-lg"
                 aria-label="Media anterior"
               >
-                <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>
-                  chevron_left
-                </span>
+                <ChevronLeft size={24} />
               </button>
 
               {/* Next button */}
@@ -607,9 +606,7 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-all duration-200 opacity-80 hover:opacity-100 shadow-lg"
                 aria-label="Media siguiente"
               >
-                <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>
-                  chevron_right
-                </span>
+                <ChevronRight size={24} />
               </button>
             </>
           )}
@@ -621,41 +618,31 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
         >
           {showBedrooms && (
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                bed
-              </span>
+              <Bed size={20} className="text-primary" />
               <span className="text-thin text-xs text-gray-700">{property.bedrooms}</span>
             </div>
           )}
           {showBathrooms && (
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                bathtub
-              </span>
+              <Waves size={20} className="text-primary" />
               <span className="text-thin text-xs text-gray-700">{property.bathrooms}</span>
             </div>
           )}
           {showBuiltSquareMeters && (
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                home
-              </span>
+              <Home size={20} className="text-primary" />
               <span className="text-thin text-xs text-gray-700">{Math.round(property.builtSquareMeters ?? 0)} m²</span>
             </div>
           )}
           {showLandSquareMeters && (
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                screenshot_frame_2
-              </span>
+              <Maximize2 size={20} className="text-primary" />
               <span className="text-thin text-xs text-gray-700">{property.landSquareMeters} m²</span>
             </div>
           )}
           {showParkingSpaces && (
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>
-                parking_sign
-              </span>
+              <ParkingSquare size={20} className="text-primary" />
               <span className="text-thin text-xs text-gray-700">{property.parkingSpaces}</span>
             </div>
           )}
@@ -706,19 +693,15 @@ export default function PropertyCard({ property, href, onClick }: PropertyCardPr
             className="transition-all duration-200 hover:scale-110 disabled:opacity-50 p-2 rounded-full"
             title={isFavorited ? 'Remover de favoritos' : 'Agregar a favoritos'}
           >
-            <span
-              className={`material-symbols-outlined transition-all ${
+            <Heart
+              size={24}
+              fill={isFavorited ? 'currentColor' : 'none'}
+              className={`transition-all ${
                 isFavorited
                   ? 'text-accent'
                   : 'text-gray-400 hover:text-accent'
               }`}
-              style={{ 
-                fontSize: '24px',
-                fontVariationSettings: isFavorited ? "'FILL' 1" : "'FILL' 0"
-              }}
-            >
-              favorite
-            </span>
+            />
           </button>
         ) : (
           <span className="w-10 h-10" aria-hidden />

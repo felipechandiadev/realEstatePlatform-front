@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { MapPin, Bed, Waves, Maximize2, ParkingSquare } from 'lucide-react';
 import { env } from '@/lib/env';
 import Link from 'next/link';
 
@@ -151,7 +152,7 @@ export default function RelatedPropertyCard({ property }: RelatedPropertyCardPro
           {/* Location */}
           {location && (
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <span className="material-symbols-outlined text-sm">location_on</span>
+              <MapPin size={16} />
               <span className="line-clamp-1">{location}</span>
             </div>
           )}
@@ -160,25 +161,25 @@ export default function RelatedPropertyCard({ property }: RelatedPropertyCardPro
           <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
             {property.bedrooms !== null && property.bedrooms !== undefined && (
               <div className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm">bed</span>
+                <Bed size={16} />
                 <span>{property.bedrooms}</span>
               </div>
             )}
             {property.bathrooms !== null && property.bathrooms !== undefined && (
               <div className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm">bathtub</span>
+                <Waves size={16} />
                 <span>{property.bathrooms}</span>
               </div>
             )}
             {property.builtSquareMeters !== null && property.builtSquareMeters !== undefined && (
               <div className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm">straighten</span>
+                <Maximize2 size={16} />
                 <span>{property.builtSquareMeters} m²</span>
               </div>
             )}
             {property.parkingSpaces !== null && property.parkingSpaces !== undefined && (
               <div className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm">local_parking</span>
+                <ParkingSquare size={16} />
                 <span>{property.parkingSpaces}</span>
               </div>
             )}

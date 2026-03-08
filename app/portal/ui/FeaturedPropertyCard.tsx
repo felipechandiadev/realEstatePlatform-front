@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { Bed, Waves, Home } from 'lucide-react';
 
 export interface FeaturedProperty {
   id: string;
@@ -98,19 +99,19 @@ export default function FeaturedPropertyCard({ property }: FeaturedPropertyCardP
               <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 {property.bedrooms ? (
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>bed</span>
+                    <Bed size={20} className="text-primary" />
                     <span>{property.bedrooms}</span>
                   </div>
                 ) : null}
                 {property.bathrooms ? (
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>bathtub</span>
+                    <Waves size={20} className="text-primary" />
                     <span>{property.bathrooms}</span>
                   </div>
                 ) : null}
                 {property.builtSquareMeters ? (
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-rounded text-primary" style={{ fontSize: '20px' }}>home</span>
+                    <Home size={20} className="text-primary" />
                     <span>{Math.round(property.builtSquareMeters)} m²</span>
                   </div>
                 ) : null}
