@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { User, Mail, Phone } from 'lucide-react';
 import { AdministratorType, AdministratorStatus } from './types';
 import IconButton from '@/shared/components/ui/IconButton/IconButton';
 import UploadUserAvatarDialog from '../../ui/UploadUserAvatarDialog';
@@ -50,7 +51,7 @@ const AdminCard: React.FC<AdminCardProps> = ({ admin, onEdit, onDelete }) => {
                     className="h-full w-full object-cover" 
                   />
                 ) : (
-                  <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>person</span>
+                  <User size={64} className="text-secondary" />
                 )}
               </div>
               {!admin.personalInfo?.avatarUrl && (
@@ -84,14 +85,14 @@ const AdminCard: React.FC<AdminCardProps> = ({ admin, onEdit, onDelete }) => {
 
             {/* Correo con icono */}
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-neutral-500" style={{ fontSize: '0.875rem' }}>email</span>
+              <Mail size={14} className="text-neutral-500" />
               <p className="text-xs font-light text-neutral-500 truncate break-all">{admin.email}</p>
             </div>
 
             {/* Teléfono con icono */}
             {admin.personalInfo?.phone && (
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-neutral-500" style={{ fontSize: '0.875rem' }}>phone</span>
+                <Phone size={14} className="text-neutral-500" />
                 <p className="text-xs font-light text-neutral-500 truncate break-all">{admin.personalInfo.phone}</p>
               </div>
             )}

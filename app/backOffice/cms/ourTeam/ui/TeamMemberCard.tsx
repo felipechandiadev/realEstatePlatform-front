@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { User, Mail, Phone } from 'lucide-react';
 import IconButton from '@/shared/components/ui/IconButton/IconButton';
 import type { TeamMember } from '@/features/backoffice/cms/actions/ourTeam.action';
 
@@ -32,9 +33,7 @@ export default function TeamMemberCard({
               if (parent) {
                 parent.innerHTML = `
                   <div class="w-full aspect-video bg-gray-100 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 40px">
-                      person
-                    </span>
+                    <User size={40} className="text-gray-400" />
                   </div>
                 `;
               }
@@ -42,9 +41,7 @@ export default function TeamMemberCard({
           />
         ) : (
           <div className="w-full aspect-video bg-gray-100 flex items-center justify-center">
-            <span className="material-symbols-outlined text-gray-400" style={{ fontSize: '40px' }}>
-              person
-            </span>
+            <User size={40} className="text-gray-400" />
           </div>
         )}
       </div>
@@ -63,14 +60,14 @@ export default function TeamMemberCard({
         <div className="flex flex-col gap-2 text-xs text-muted-foreground pt-2">
           {member.mail && (
             <div className="flex items-center gap-1">
-              <span className="material-symbols-outlined text-base">mail</span>
+              <Mail size={16} className="flex-shrink-0" />
               <span className="truncate">{member.mail}</span>
             </div>
           )}
 
           {member.phone && (
             <div className="flex items-center gap-1">
-              <span className="material-symbols-outlined text-base">phone</span>
+              <Phone size={16} className="flex-shrink-0" />
               <span>{member.phone}</span>
             </div>
           )}

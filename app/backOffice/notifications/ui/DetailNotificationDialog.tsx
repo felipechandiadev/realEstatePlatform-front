@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Dialog from '@/shared/components/ui/Dialog/Dialog';
 import { getNotificationById } from '@/features/backoffice/notifications/actions/notifications.action';
 import { useAlert } from '@/providers/AlertContext';
+import DotProgress from '@/shared/components/ui/DotProgress/DotProgress';
 
 interface TargetUser {
   id: string;
@@ -114,7 +115,7 @@ const DetailNotificationDialog: React.FC<DetailNotificationDialogProps> = ({
       <div className="space-y-4">
         {loading && (
           <div className="flex justify-center py-8">
-            <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+            <DotProgress />
           </div>
         )}
 

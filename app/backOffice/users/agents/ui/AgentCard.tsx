@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { User, Mail, Phone } from 'lucide-react'
 import { env } from '@/lib/env';
 import { AgentType } from './types'
 import IconButton from '@/shared/components/ui/IconButton/IconButton'
@@ -65,7 +66,7 @@ const AgentCard: React.FC<AgentCardProps> = ({ agent, onEdit, onDelete }) => {
                   className="h-full w-full object-cover"
                 />
               ) : (
-                <span className="material-symbols-outlined text-secondary" style={{ fontSize: '4rem' }}>person</span>
+                <User size={64} className="text-secondary" />
               )}
             </div>
             {/* El icono 'add' sobre el avatar ha sido removido */}
@@ -85,13 +86,13 @@ const AgentCard: React.FC<AgentCardProps> = ({ agent, onEdit, onDelete }) => {
           <p className="text-xs font-light text-neutral-600 truncate break-all">@{agent.username}</p>
           {/* Correo con icono */}
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-neutral-500" style={{ fontSize: '0.875rem' }}>email</span>
+            <Mail size={14} className="text-neutral-500" />
             <p className="text-xs font-light text-neutral-500 truncate break-all">{agent.email}</p>
           </div>
           {/* Teléfono con icono */}
           {agent.personalInfo?.phone && (
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-neutral-500" style={{ fontSize: '0.875rem' }}>phone</span>
+              <Phone size={14} className="text-neutral-500" />
               <p className="text-xs font-light text-neutral-500 truncate break-all">{agent.personalInfo.phone}</p>
             </div>
           )}

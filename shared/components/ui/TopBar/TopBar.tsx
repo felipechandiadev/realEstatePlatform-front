@@ -203,7 +203,7 @@ const TopBar: React.FC<TopBarProps> = ({
                 aria-label="Cerrar menú lateral"
                 data-test-id="sidebar-overlay"
               />
-              <SideBar menuItems={menuItems} onClose={close} logoUrl={logoSrc} />
+              <SideBar menuItems={menuItems} onClose={close} logoUrl={logoSrc} companyName={title} />
             </>
           )}
           {/* Children se renderizan fuera de TopBar, en el layout */}

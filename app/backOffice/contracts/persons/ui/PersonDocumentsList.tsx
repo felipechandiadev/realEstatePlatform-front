@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAlert } from '@/providers/AlertContext';
+import DotProgress from '@/shared/components/ui/DotProgress/DotProgress';
 import { 
   getPersonDocuments, 
   deleteDocument,
@@ -113,11 +114,11 @@ export default function PersonDocumentsList({ personId, compact = false }: Perso
   if (loading) {
     return compact ? (
       <div className="flex items-center justify-center">
-        <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+        <DotProgress />
       </div>
     ) : (
       <div className="flex items-center justify-center py-4">
-        <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+        <DotProgress />
       </div>
     );
   }

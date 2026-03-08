@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import Dialog from '@/shared/components/ui/Dialog/Dialog';
 import UpdateBaseForm from '@/shared/components/ui/BaseForm/UpdateBaseForm';
 import Alert from '@/shared/components/ui/Alert/Alert';
+import DotProgress from '@/shared/components/ui/DotProgress/DotProgress';
 import { Button } from '@/shared/components/ui/Button/Button';
 import { BaseUpdateFormField, BaseUpdateFormFieldGroup } from '@/shared/components/ui/BaseForm/UpdateBaseForm';
 import { updateUserProfile, changePassword, uploadMultimedia, updateUserAvatar, getCurrentUserProfile } from '@/features/backoffice/users/actions/users.action';
@@ -398,7 +399,7 @@ const MyAccountDialog: React.FC<MyAccountDialogProps> = ({ open, onClose }) => {
 
                 {loading && !initialData.username ? (
                     <div className="flex justify-center py-8">
-                        <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+                        <DotProgress />
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

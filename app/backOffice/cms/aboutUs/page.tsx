@@ -21,6 +21,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@/shared/components/ui/TextField/TextField';
 import { Button } from '@/shared/components/ui/Button/Button';
+import DotProgress from '@/shared/components/ui/DotProgress/DotProgress';
 import MultimediaUpdater from '@/shared/components/ui/FileUploader/MultimediaUpdater';
 import { getAboutUs, updateAboutUs, createDefaultAboutUs } from '@/features/backoffice/cms/actions/aboutUs.action';
 import { useAlert } from '@/shared/hooks/useAlert';
@@ -127,7 +128,7 @@ export default function AboutUsPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+        <DotProgress />
       </div>
     );
   }
@@ -239,7 +240,7 @@ export default function AboutUsPage() {
           <Button onClick={handleSubmit} disabled={isSaving}>
             {isSaving ? (
               <>
-                <div className="flex justify-center"><span className="material-symbols-outlined animate-spin">progress_activity</span></div>
+                <DotProgress />
                 Guardando...
               </>
             ) : (
