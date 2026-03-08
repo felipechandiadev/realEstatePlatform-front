@@ -216,10 +216,7 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
     >
       {/* Media container */}
       <div 
-        className="absolute inset-0 w-full h-full"
-        style={{
-          background: 'linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 60%, rgba(4, 201, 231, 0.6) 100%)'
-        }}
+        className="absolute inset-0 w-full h-full bg-white"
       >
         {slides.map((slide, i) => {
           if (slide.multimediaUrl && isVideo(slide.multimediaUrl)) {
@@ -233,9 +230,9 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
                 }}
                 src={slide.multimediaUrl}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity ${
-                  i === current ? "opacity-100 z-10 slide-enter" : "opacity-0 z-0"
+                  i === current ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
-                style={{ transition: `opacity ${transitionTime}ms linear` }}
+                style={{ transition: `opacity ${transitionTime}ms ease-in-out` }}
                 autoPlay
                 loop
                 muted
@@ -268,21 +265,20 @@ export default function Slider({ transitionTime = 2000 }: SliderProps) {
                 src={slide.multimediaUrl}
                 alt={slide.title}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity ${
-                  i === current ? "opacity-100 z-10 slide-enter" : "opacity-0 z-0"
+                  i === current ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
-                style={{ transition: `opacity ${transitionTime}ms linear` }}
+                style={{ transition: `opacity ${transitionTime}ms ease-in-out` }}
               />
             );
           } else {
             return (
               <div
                 key={slide.id}
-                className={`absolute inset-0 w-full h-full transition-opacity ${
-                  i === current ? "opacity-100 z-10 slide-enter" : "opacity-0 z-0"
+                className={`absolute inset-0 w-full h-full transition-opacity bg-white ${
+                  i === current ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
                 style={{ 
-                  transition: `opacity ${transitionTime}ms linear`,
-                  background: 'linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 60%, rgba(4, 201, 231, 0.6) 100%)'
+                  transition: `opacity ${transitionTime}ms ease-in-out`
                 }}
               />
             );
