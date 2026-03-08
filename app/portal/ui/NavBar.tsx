@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Home, ChevronDown, ChevronUp } from 'lucide-react'
 import ContactDialog from '@/shared/components/ui/ContactDialog/ContactDialog'
 
 export default function NavBar() {
@@ -35,9 +36,7 @@ export default function NavBar() {
         {/* --- Home Link --- */}
         <li>
           <button onClick={() => router.push('/portal')} className="flex items-center gap-1 md:gap-2 text-xs md:text-sm font-medium text-neutral-900 hover:text-primary uppercase tracking-wide">
-            <span className="material-symbols-sharp text-xl md:text-2xl text-primary" aria-hidden>
-              home
-            </span>
+            <Home size={20} className="md:w-6 md:h-6 text-primary" />
           </button>
         </li>
 
@@ -50,7 +49,7 @@ export default function NavBar() {
             className="flex items-center gap-0.5 md:gap-2 cursor-pointer py-1 md:py-2 px-0.5 md:px-1"
           >
             <span className="text-xs md:text-sm font-medium text-neutral-900 uppercase tracking-wide">Propiedades</span>
-            <span className="material-symbols-outlined text-sm md:text-base text-primary">arrow_drop_down</span>
+            {openMenu === 'propiedades' ? <ChevronUp size={16} className="text-primary" /> : <ChevronDown size={16} className="text-primary" />}
           </button>
           
           {openMenu === 'propiedades' && (
@@ -71,7 +70,7 @@ export default function NavBar() {
             className="flex items-center gap-1 md:gap-2 cursor-pointer py-2 px-1"
           >
             <span className="text-xs md:text-sm font-medium text-neutral-900 uppercase tracking-wide">Nosotros</span>
-            <span className="material-symbols-outlined text-sm md:text-base text-primary">arrow_drop_down</span>
+            {openMenu === 'nosotros' ? <ChevronUp size={16} className="text-primary" /> : <ChevronDown size={16} className="text-primary" />}
           </button>
           
           {openMenu === 'nosotros' && (

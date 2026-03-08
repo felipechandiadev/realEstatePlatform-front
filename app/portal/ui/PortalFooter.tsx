@@ -8,6 +8,7 @@ import {
   faLinkedin,
   faYoutube
 } from "@fortawesome/free-brands-svg-icons";
+import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { getIdentity } from "@/features/backoffice/cms/actions/identity.action";
 import Dialog from "@/shared/components/ui/Dialog/Dialog";
 import { Button } from "@/shared/components/ui/Button/Button";
@@ -156,19 +157,19 @@ const PortalFooter: React.FC = () => {
 
             <div className="space-y-2 text-xs text-background/80 flex flex-col items-center md:items-start">
               <div className="flex items-start gap-2">
-                <span className="material-symbols-rounded text-background text-base">location_on</span>
+                <MapPin size={16} className="text-background mt-0.5 flex-shrink-0" />
                 <p className="leading-relaxed">
                   {identity?.address || '572 Francesca Stream, Parral, Región del Maule'}
                 </p>
               </div>
 
               <div className="flex items-start gap-2">
-                <span className="material-symbols-rounded text-background text-base">call</span>
+                <Phone size={16} className="text-background mt-0.5 flex-shrink-0" />
                 <p>{identity?.phone || '+56 9 1429 0441'}</p>
               </div>
 
               <div className="flex items-start gap-2">
-                <span className="material-symbols-rounded text-background text-base">schedule</span>
+                <Clock size={16} className="text-background mt-0.5 flex-shrink-0" />
                 <p className="leading-relaxed whitespace-pre-line">
                   {identity?.businessHours || 'Lunes a Viernes: 9:00 - 18:00\nSábado: 9:00 - 13:00\nDomingo: Cerrado'}
                 </p>
@@ -195,7 +196,7 @@ const PortalFooter: React.FC = () => {
           <div className="md:col-span-1 space-y-4 flex flex-col items-center text-center md:items-start md:text-left">
             <h3 className="text-lg font-semibold text-background">Contacto</h3>
             <div className="flex items-center gap-3">
-              <span className="material-symbols-rounded text-background text-lg">mail</span>
+              <Mail size={18} className="text-background" />
               <a
                 href={`mailto:${identity?.mail || 'contacto@plataformainmobiliaria.cl'}`}
                 className="text-sm text-background/90 hover:text-primary transition-colors"

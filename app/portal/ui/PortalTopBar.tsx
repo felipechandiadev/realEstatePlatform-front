@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { User, Bell, Building2, Heart, FileText, Home, ChevronDown, ChevronUp, LogOut, LogIn, UserPlus, Mail, Phone } from "lucide-react";
 import IconButton from "@/shared/components/ui/IconButton/IconButton";
 import { Button } from "@/shared/components/ui/Button/Button";
 import Dialog from "@/shared/components/ui/Dialog/Dialog";
@@ -100,11 +101,10 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
           </span>
         </div>
 
-        {isUserLoggedIn && (
           <div className="mx-4 p-3 bg-primary/5 border border-primary/10 rounded-xl mb-2 flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary text-xl">person</span>
+                <User size={20} className="text-primary" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs text-muted-foreground">Bienvenido(a)</span>
@@ -114,7 +114,6 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
               </div>
             </div>
           </div>
-        )}
 
         <div className="p-4 flex-1 overflow-y-auto custom-scrollbar">
           <nav className="w-full">
@@ -124,7 +123,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
                   <li>
                     <button onClick={() => handleNavigation('/portal/personalInfo')} className="flex items-center justify-between w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
                       <div className="flex items-center gap-3">
-                        <span className="material-symbols-sharp text-xl text-primary">person</span>
+                        <User size={20} className="text-primary" />
                         <span>Mis Datos</span>
                       </div>
                     </button>
@@ -132,7 +131,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
                   <li>
                     <button onClick={() => handleNavigation('/portal/notifications')} className="flex items-center justify-between w-full px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors group">
                       <div className="flex items-center gap-3">
-                        <span className="material-symbols-sharp text-xl text-primary">notifications</span>
+                        <Bell size={20} className="text-primary" />
                         <span>Notificaciones</span>
                       </div>
                       {unreadCount > 0 && (
@@ -144,19 +143,19 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
                   </li>
                   <li>
                     <button onClick={() => handleNavigation('/portal/myProperties')} className="flex items-center gap-3 w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                      <span className="material-symbols-sharp text-xl text-primary">home_work</span>
+                      <Building2 size={20} className="text-primary" />
                       <span>Mis Propiedades</span>
                     </button>
                   </li>
                   <li>
                     <button onClick={() => handleNavigation('/portal/favorites')} className="flex items-center gap-3 w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                      <span className="material-symbols-sharp text-xl text-primary">favorite</span>
+                      <Heart size={20} className="text-primary" />
                       <span>Favoritos</span>
                     </button>
                   </li>
                   <li>
                     <button onClick={() => handleNavigation('/portal/myContracts')} className="flex items-center gap-3 w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                      <span className="material-symbols-sharp text-xl text-primary">description</span>
+                      <FileText size={20} className="text-primary" />
                       <span>Mis Contratos</span>
                     </button>
                   </li>
@@ -168,7 +167,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
 
               <li>
                 <button onClick={() => handleNavigation('/portal')} className="flex items-center gap-3 w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors uppercase tracking-wide">
-                  <span className="material-symbols-sharp text-xl text-primary">home</span>
+                  <Home size={20} className="text-primary" />
                   <span>Inicio</span>
                 </button>
               </li>
@@ -176,9 +175,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
               <li className="relative" onBlur={handleBlur}>
                 <button onClick={() => toggleMenu('propiedades')} className="flex items-center justify-between w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors uppercase tracking-wide">
                   <span>Propiedades</span>
-                  <span className="material-symbols-outlined text-base text-primary">
-                    {openMenu === 'propiedades' ? 'arrow_drop_up' : 'arrow_drop_down'}
-                  </span>
+                  {openMenu === 'propiedades' ? <ChevronUp size={16} className="text-primary" /> : <ChevronDown size={16} className="text-primary" />}
                 </button>
                 {openMenu === 'propiedades' && (
                   <ul className="mt-2 ml-6 space-y-1 border-l-2 border-primary/10 pl-2">
@@ -192,9 +189,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
               <li className="relative" onBlur={handleBlur}>
                 <button onClick={() => toggleMenu('nosotros')} className="flex items-center justify-between w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors uppercase tracking-wide">
                   <span>Nosotros</span>
-                  <span className="material-symbols-outlined text-base text-primary">
-                    {openMenu === 'nosotros' ? 'arrow_drop_up' : 'arrow_drop_down'}
-                  </span>
+                  {openMenu === 'nosotros' ? <ChevronUp size={16} className="text-primary" /> : <ChevronDown size={16} className="text-primary" />}
                 </button>
                 {openMenu === 'nosotros' && (
                   <ul className="mt-2 ml-6 space-y-1 border-l-2 border-primary/10 pl-2">
@@ -239,7 +234,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
               className="w-full justify-start"
               onClick={() => { signOut({ redirect: true, callbackUrl: '/portal' }); onClose(); }}
             >
-              <span className="material-symbols-outlined mr-2">logout</span>
+              <LogOut size={16} className="mr-2" />
               Cerrar Sesión
             </Button>
           ) : (
@@ -249,7 +244,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
                 className="w-full justify-start"
                 onClick={() => { onLoginClick(); onClose(); }}
               >
-                <span className="material-symbols-outlined mr-2">login</span>
+                <LogIn size={16} className="mr-2" />
                 Ingresar
               </Button>
               <Button
@@ -257,7 +252,7 @@ function Sidebar({ open, onClose, identity, onLoginClick, onRegisterClick, isUse
                 className="w-full justify-start"
                 onClick={() => { onClose(); onRegisterClick(); }}
               >
-                <span className="material-symbols-outlined mr-2">person_add</span>
+                <UserPlus size={16} className="mr-2" />
                 Registrarse
               </Button>
             </div>
@@ -384,14 +379,14 @@ export default function PortalTopBar({ onMenuClick, nombreEmpresa = "Plataforma 
               href={`mailto:${identity?.mail || "contacto@empresa.cl"}`}
               className="flex items-center gap-1 text-xs text-foreground whitespace-nowrap hover:text-primary transition-colors"
             >
-              <span className="material-symbols-outlined text-base">mail</span>
+              <Mail size={16} />
               {identity?.mail || "contacto@empresa.cl"}
             </a>
             <a 
               href={`tel:${identity?.phone || "+56912345678"}`}
               className="flex items-center gap-1 text-xs text-foreground whitespace-nowrap hover:text-primary transition-colors"
             >
-              <span className="material-symbols-outlined text-base">call</span>
+              <Phone size={16} />
               {identity?.phone || "+56 9 1234 5678"}
             </a>
           </div>
@@ -408,7 +403,7 @@ export default function PortalTopBar({ onMenuClick, nombreEmpresa = "Plataforma 
             // Usuario logueado: mostrar nombre + ícono
             <div className="hidden sm:flex items-center gap-2 text-right">
               <div className="h-6 w-px bg-foreground mx-2" />
-              <span className="material-symbols-outlined text-primary">person</span>
+              <User size={16} className="text-primary" />
               <span className="text-xs text-foreground">
                 {session.user.name?.split(' ')[0] || 'Usuario'}
               </span>
