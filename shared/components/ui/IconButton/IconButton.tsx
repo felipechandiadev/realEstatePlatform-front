@@ -1,9 +1,11 @@
 import React from "react";
+import * as LucideIcons from "lucide-react";
+import { ICON_MAP } from "./ICON_MAP";
 
 type IconButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
 
 interface IconButtonProps {
-	icon: string; // nombre del icono material-symbols
+	icon: string; // nombre del icono material-symbols (se convierte a Lucide)
 	variant?: "containedPrimary" | "containedSecondary" | "text" | "basic" | "basicPrimary" | "basicSecondary" | "outlined";
 	size?: IconButtonSize;
 	disabled?: boolean;
@@ -32,11 +34,43 @@ const sizeMap: Record<Exclude<IconButtonSize, number>, string> = {
   xl: 'icon-size-xl w-14 h-14',
 };
 
-const IconButton: React.FC<IconButtonProps> = ({ icon, variant = "containedPrimary", size = 'md', disabled = false, isLoading = false, className = "", onClick, ariaLabel, ...props }) => {
+/**
+ * Get Lucide icon component by name
+ * Returns the component or null if not found
+ */
+function getLucideIcon(iconName: string): React.ComponentType<any> | null {
+	const mappedName = ICON_MAP[iconName] || 'HelpCircle';
+	const IconComponent = (LucideIcons as any)[mappedName];
+	return IconComponent || (LucideIcons as any).HelpCircle;
+}
+
+const IconButton: React.FC<IconButtonProps> = ({ 
+	icon, 
+	variant = "containedPrimary", 
+	size = 'md', 
+	disabled = false, 
+	isLoading = false, 
+	className = "", 
+	onClick, 
+	ariaLabel, 
+	...props 
+}) => {
 	const sizeClass = typeof size === 'number' ? `w-[${size + 16}px] h-[${size + 16}px]` : sizeMap[size] || sizeMap['md'];
-	const iconSizeClass = typeof size === 'number' ? '' : `icon-size-${size}`;
 	const effectiveDisabled = disabled || isLoading;
 	const disabledClass = effectiveDisabled ? 'icon-button-disabled' : '';
+	
+	// Get icon size for Lucide (base size without padding)
+	const iconSizeMap: Record<Exclude<IconButtonSize, number>, number> = {
+		xs: 16,
+		sm: 20,
+		md: 24,
+		lg: 28,
+		xl: 32,
+	};
+	const iconSize = typeof size === 'number' ? size : iconSizeMap[size] || 24;
+	
+	// Get Lucide icon component
+	const IconComponent = getLucideIcon(isLoading ? 'progress_activity' : icon);
 	
 	return (
 		<button
@@ -48,12 +82,13 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, variant = "containedPrima
 			disabled={effectiveDisabled}
 			{...props}
 		>
-			<span
-				className={`material-symbols-outlined select-none ${iconSizeClass} ${isLoading ? 'animate-spin' : ''}`}
-				aria-hidden
-			>
-				{isLoading ? 'progress_activity' : icon}
-			</span>
+			{IconComponent && (
+				<IconComponent
+					size={iconSize}
+					className={`select-none ${isLoading ? 'animate-spin' : ''}`}
+					aria-hidden
+				/>
+			)}
 		</button>
 	);
 };
